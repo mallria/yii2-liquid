@@ -18,7 +18,7 @@ Liquid::set('INCLUDE_SUFFIX', 'liquid');
 Liquid::set('INCLUDE_PREFIX', '');
 
 
-class ViewRenderer extends BaseViewRenderer {
+class LiquidViewRenderer extends BaseViewRenderer {
 
 
     /**
