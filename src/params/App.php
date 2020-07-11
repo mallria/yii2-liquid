@@ -17,8 +17,18 @@ class App implements IParam {
                     'token' => \Yii::$app->getRequest()->csrfToken,
                 ),
                 'elapsed_time' => \Yii::getLogger()->getElapsedTime(),
-                'db_profiling' => \Yii::getLogger()->getDbProfiling(),
+                'mongodb_profiling' => self::getMongodbProfilng(),
             ),
         ];
+    }
+
+    private static function getMongodbProfilng(){
+        $timings = \Yii::getLogger()->getProfiling(['yii\mongodb\Command::query', 'yii\mongodb\Command::execute']);
+        $count = count($timings);
+        $time = 0;
+        foreach ($timings as $timing) {
+            $time += $timing['duration'];
+        }
+        return [$count, $time];
     }
 }

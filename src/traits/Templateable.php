@@ -2,6 +2,11 @@
 namespace mallria\liquid\traits;
 
 use Liquid\Template;
+use mallria\liquid\tags\CssTag;
+use mallria\liquid\tags\FileTag;
+use mallria\liquid\tags\JsTag;
+use mallria\liquid\tags\TestTag;
+use mallria\liquid\tags\UrlTag;
 
 trait Templateable {
 
@@ -43,6 +48,12 @@ trait Templateable {
         );
 
         $this->liquid_template = new Template($this->path, $this->cache);
+
+        $this->liquid_template->registerTag('test',TestTag::class);
+        $this->liquid_template->registerTag('url',UrlTag::class);
+        $this->liquid_template->registerTag('file',FileTag::class);
+        $this->liquid_template->registerTag('css',CssTag::class);
+        $this->liquid_template->registerTag('js',JsTag::class);
 
         $this->liquid_template->parse($parse);
         return $this->liquid_template->render($params);

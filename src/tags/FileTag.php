@@ -37,7 +37,7 @@ class FileTag extends AbstractTag
 
         $theme = \Yii::$app->theme;
         if (empty($theme)) {
-            $theme = 'default';
+            $theme = 'basic';
         }
 
         if (substr($this->file, '0', '1') === '/') {
